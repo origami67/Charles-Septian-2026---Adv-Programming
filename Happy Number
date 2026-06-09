@@ -1,0 +1,27 @@
+#My happy number code
+
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+    for (int i = 1; i <= T; i++) {
+        int n;
+        scanf("%d", &n);
+        int original = n;
+        while (n != 1 && n != 4) {
+            int sum = 0;
+            while (n > 0) {
+                int d = n % 10;
+                sum += d * d;
+                n /= 10;
+            }
+            n = sum;
+        }
+        if (n == 1)
+            printf("Case #%d: %d is a Happy number.\n", i, original);
+        else
+            printf("Case #%d: %d is an Unhappy number.\n", i, original);
+    }
+    return 0;
+}
