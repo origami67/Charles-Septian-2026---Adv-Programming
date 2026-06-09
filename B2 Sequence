@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+int main() {
+    int n, tc = 1;
+    int i, j, s;
+
+    while (scanf("%d", &n) != EOF) {
+        int a[105];
+        int used[20005] = {0};
+        int ok = 1;
+
+        for (i = 0; i < n; i++) {
+            scanf("%d", &a[i]);
+        }
+
+        for (i = 0; i < n; i++) {
+            if (a[i] < 1) ok = 0;
+            if (i > 0 && a[i] <= a[i - 1]) ok = 0;
+        }
+
+        for (i = 0; i < n; i++) {
+            for (j = i; j < n; j++) {
+                s = a[i] + a[j];
+
+                if (used[s] == 1) ok = 0;
+                used[s] = 1;
+            }
+        }
+
+        if (ok)
+            printf("Case #%d: It is a B2-Sequence.\n", tc);
+        else
+            printf("Case #%d: It is not a B2-Sequence.\n", tc);
+
+        tc++;
+    }
+
+    return 0;
+}
